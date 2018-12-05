@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StarGrid : MonoBehaviour {
-	public List<Node> path;
     public LayerMask unwalkableMask;
     public Vector2 gridWorldSize;
     public float nodeRadius;
-    Node[,] grid;
+	public bool displayGridGizmos;
+	public float collisionBuffer;
+    private Node[,] grid;
 	
 	float nodeDiameter;
 	int gridSizeX, gridSizeY;
 	
 	
-	void Start(){
+	public int MaxSize{
+		get{return gridSizeX * gridSizeY;}
+	}
+	
+	void Awake(){
 		nodeDiameter = nodeRadius * 2;
 		gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
 		gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
@@ -23,17 +28,12 @@ public class StarGrid : MonoBehaviour {
 
     void OnDrawGizmos(){
         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
-		if(grid != null){
-			 foreach(Node n in grid){
+		if(grid != null && displayGridGizmos){
+			foreach(Node n in grid){
 				Gizmos.color = (n.walkable)?Color.white:Color.red;
-				if(path != null){
-					if(path.Contains(n)){
-						Gizmos.color = Color.black;
-					}
-				}
 				Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter-.1f));
-			 }
-		 }
+			}
+		}
     }
 	
 	public List<Node> GetNeighbours(Node node){
@@ -61,7 +61,7 @@ public class StarGrid : MonoBehaviour {
 		for (int x=0; x < gridSizeX; x++){
 			for (int y=0; y < gridSizeY; y++){
 				Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
-				bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unwalkableMask));
+				bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius+collisionBuffer, unwalkableMask));
 				grid[x,y] = new Node(walkable, worldPoint, x, y);
 			}
 		}
