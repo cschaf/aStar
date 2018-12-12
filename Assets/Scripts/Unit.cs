@@ -14,6 +14,10 @@ public class Unit : MonoBehaviour {
 		PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
 	}
 	
+	void Update(){
+		PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+	}
+	
 	public void OnPathFound(Vector3[] newPath, bool pathSuccessful){
 		if(pathSuccessful){
 			path = newPath;
@@ -38,6 +42,7 @@ public class Unit : MonoBehaviour {
 	}
 	
 	IEnumerator FollowPath(){
+		if(path.Length >0){
 		Vector3 currentWaypoint = path[0];
 		
 		while(true){
@@ -50,6 +55,7 @@ public class Unit : MonoBehaviour {
 			}
 			transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
 			yield return null;
+		}
 		}
 	}
 }
