@@ -1,0 +1,75 @@
+# Blender MTL File: 'None'
+# Material Count: 7
+
+newmtl Color_006
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.337255 0.337255 0.337255
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 2
+
+newmtl Color_008
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.117647 0.117647 0.117647
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 2
+
+newmtl Color_I06
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.000000 0.000000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 2
+
+newmtl Metal_Aluminum_Anodized
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 2
+map_Kd /Users/jl/Master_Semester_2/runnar_assets/models/chair/model/Metal_Aluminum_Anodized.jpg
+
+newmtl Metal_Aluminum_Anodized_0
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 2
+map_Kd /Users/jl/Master_Semester_2/runnar_assets/models/chair/model/Metal_Aluminum_Anodized_0.jpg
+
+newmtl Metal_Rough
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 2
+map_Kd /Users/jl/Master_Semester_2/runnar_assets/models/chair/model/Metal_Rough.jpg
+
+newmtl material
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni -1.000000
+d 1.000000
+illum 2
