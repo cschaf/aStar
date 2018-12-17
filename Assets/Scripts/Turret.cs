@@ -6,6 +6,7 @@ public class Turret : MonoBehaviour {
 	public float ShootingSpeed;
 	public Transform seeker;
 	public Transform bulletExitArea;
+	public GameObject bulletObject;
 		
 	void Update () {
 		transform.LookAt(seeker);
@@ -25,15 +26,25 @@ public class Turret : MonoBehaviour {
 	
 	IEnumerator Shooting(){
 		 while(true){
-			GameObject bullet = Instantiate(Resources.Load("Bullet", typeof(GameObject))) as GameObject;
+			GameObject bullet = getBulletObject();
 			Rigidbody rb = bullet.GetComponent<Rigidbody>();
 			bullet.transform.rotation = bulletExitArea.transform.rotation;
 			bullet.transform.position = bulletExitArea.transform.position;
 			rb.AddRelativeForce(0,0,ShootingSpeed, ForceMode.Impulse);
-			Destroy(bullet,2);
+			Destroy(bullet,5);
 			yield return new WaitForSeconds(1);
 		 }
 		
+		
+	}
+	
+	GameObject getBulletObject(){
+		if(bulletObject == null){
+			return Instantiate(Resources.Load("Bullet", typeof(GameObject))) as GameObject;
+		}
+		else{
+			return Instantiate(bulletObject);
+		}
 		
 	}
 }
