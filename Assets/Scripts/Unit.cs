@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class Unit : MonoBehaviour {
 
 	public Transform target;
 	public float speed;
+    public Text winnerText;
 	Vector3[] path;
 	int targetIndex;
 	
@@ -20,7 +22,7 @@ public class Unit : MonoBehaviour {
 	
 	public void OnPathFound(Vector3[] newPath, bool pathSuccessful){
 		if(pathSuccessful){
-			path = newPath;
+            path = newPath;
 			StopCoroutine("FollowPath");
 			StartCoroutine("FollowPath");
 		}
@@ -42,20 +44,22 @@ public class Unit : MonoBehaviour {
 	}
 	
 	IEnumerator FollowPath(){
-		if(path.Length >0){
-		Vector3 currentWaypoint = path[0];
-		
-		while(true){
-			if(transform.position == currentWaypoint){
-				targetIndex++;
-				if(targetIndex >= path.Length){
-					yield break;
-				}
-				currentWaypoint = path[targetIndex];
-			}
-			transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
-			yield return null;
-		}
-		}
+		if(path.Length > 0){
+    	    Vector3 currentWaypoint = path[0];
+    		
+    		while(true){
+    			if(transform.position == currentWaypoint){
+    				targetIndex++;
+    				if(targetIndex >= path.Length){
+    					yield break;
+    				}
+    				currentWaypoint = path[targetIndex];
+    			}
+    			transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
+    			yield return null;
+    		}
+        }else{
+            winnerText.text = "Winner";
+        }
 	}
 }
