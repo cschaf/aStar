@@ -8,6 +8,7 @@ public class StarGrid : MonoBehaviour {
     public float nodeRadius;
 	public bool displayGridGizmos;
 	public float collisionBuffer;
+	public float seekerHeight;
     private Node[,] grid;
 	
 	float nodeDiameter;
@@ -60,7 +61,7 @@ public class StarGrid : MonoBehaviour {
 		
 		for (int x=0; x < gridSizeX; x++){
 			for (int y=0; y < gridSizeY; y++){
-				Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
+				Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius) + new Vector3(0,seekerHeight/2,0);
 				bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius+collisionBuffer, unwalkableMask));
 				grid[x,y] = new Node(walkable, worldPoint, x, y);
 			}
