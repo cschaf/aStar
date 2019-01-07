@@ -7,17 +7,22 @@ public class Countdown : MonoBehaviour
     public float timeLeft;
 
     public Text countdown;
-    public Text looser;
+    public Text winner;
 
     void Update()
     {
-        if(timeLeft > 0) {
-            timeLeft -= Time.deltaTime;
-            countdown.text = "" + Mathf.Round(timeLeft);
-            if (timeLeft <= 0)
-            {
-                looser.text = "Verloren";
-            }
-        }
+		if(winner.text == "Gewonnen"){
+			countdown.text = "";
+		}
+		else{
+			if(timeLeft > 0) {
+				timeLeft -= Time.deltaTime;
+				countdown.text = "" + Mathf.Round(timeLeft);
+				if (timeLeft <= 0)
+				{
+					winner.text = "Verloren";
+				}
+			}
+		}
     }
 }
