@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QCAR_Dataset_config.xsd">
   <TargetSet version="5.0" toolVersion="4.2.0">
+    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-01-10 09:45:45" name="cigarettes" targetId="f4f6e81a479645d68ffd85135c728535" version="2.0" />
+    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-01-09 19:05:05" name="matches" targetId="b457c0e43f8d4040a663c0be2419c45b" version="2.0" />
     <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-01-07 10:02:08" name="yoshi" targetId="b48b4e4b228b4b499fefee2cf48b42c1" version="2.0" />
-    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-01-07 09:12:13" name="stift" targetId="c6633180de344a78af1b454179866a49" version="2.0" />
-    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-01-07 09:40:31" name="mario" targetId="39160d5458a74911a477d8bd472b67a3" version="2.0" />
   </TargetSet>
 </QCARInfo>
