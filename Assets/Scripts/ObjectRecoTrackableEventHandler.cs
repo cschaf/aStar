@@ -10,7 +10,6 @@ public class ObjectRecoTrackableEventHandler : DefaultTrackableEventHandler
     protected override void OnTrackingFound()
     {
         base.OnTrackingFound();
-        Debug.Log("" + transform.position);
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
     }
 

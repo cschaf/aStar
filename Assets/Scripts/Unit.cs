@@ -28,7 +28,7 @@ public class Unit : MonoBehaviour {
 
   IEnumerator DrawUnitPath() {
     if(path != null){
-      List<GameObject> spheres = new List<GameObject>();
+      //List<GameObject> spheres = new List<GameObject>();
       if(path.Length == 1) {
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, path[0]);
@@ -37,7 +37,7 @@ public class Unit : MonoBehaviour {
       else if (path.Length > 1) {
         for(int i = targetIndex; i < path.Length; i++) {
           // Draw connector sphere
-          DrawSphere(path[i]);
+          //DrawSphere(path[i]);
           if(i == targetIndex) {
             lineRenderer.SetPosition(i, path[i]);
             lineRenderer.SetPosition(i, transform.position);
