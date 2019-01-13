@@ -35,7 +35,7 @@ public class StarGrid : MonoBehaviour {
 
     void Update(){
 		StopCoroutine("DrawNode");
-		//ClearNodes();
+		ClearNodes();
         CreateGrid();
 
     }
