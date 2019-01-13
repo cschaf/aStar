@@ -72,7 +72,11 @@ public class Pathfinding : MonoBehaviour {
 			path.Add(currentNode);
 			currentNode = currentNode.parent;
 		}
-		Vector3[] waypoints = SimplifyPath(path);
+		//Simplify the path 
+		//Vector3[] waypoints = SimplifyPath(path);
+		
+		//Use all path nodes
+		Vector3[] waypoints = GetNodesPositions(path);
 		Array.Reverse(waypoints);
 		return waypoints;
 	}
@@ -90,6 +94,15 @@ public class Pathfinding : MonoBehaviour {
 		}
 		return waypoints.ToArray();
 	}
+	
+	Vector3[] GetNodesPositions(List<Node> path){
+		List<Vector3> waypoints = new List<Vector3>();
+		
+		for(int i=1; i < path.Count; i++){
+			waypoints.Add(path[i].worldPosition);
+		}
+		return waypoints.ToArray();
+	}	
 	
 	int GetDistance(Node nodeA, Node nodeB){
 		int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
