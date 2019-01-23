@@ -4,13 +4,17 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Die Unit Klasse.
+/// Sie repräsentiert den Sucher/Seeker, der zum Ziel gehen muss
+/// </summary>
 public class Unit : MonoBehaviour {
 
 	public Transform target;
-	public float speed;
-	public Text winnerText;
+	public float speed; // Geschwindigkeit mit der die Unit läuft
+	public Text winnerText; // Anzeigetext der dem Spieler zu Ende des Spiel angezeigt wird
 	private LineRenderer lineRenderer;
-	private List<GameObject> connectors;
+	private List<GameObject> connectors; //  Liste mit Verbindungselementen für den Simplyfied Pfad
 	Vector3[] path;
 	int targetIndex;
 	
@@ -26,7 +30,10 @@ public class Unit : MonoBehaviour {
 		PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
 
 	}
-
+  /// <summary>
+  /// Zeichnet den Pfad, den die Unit läuft entlang der Nodes
+  /// </summary>
+  /// <returns></returns>
   IEnumerator DrawUnitPath() {
     if(path != null){
       //List<GameObject> spheres = new List<GameObject>();
@@ -53,7 +60,10 @@ public class Unit : MonoBehaviour {
     yield return null;
 
   }
-
+  /// <summary>
+  /// Zeichnet eine Sphere als Connector zwischen den Nodes
+  /// </summary>
+  /// <param name="pos">Position</param>
   private void DrawSphere(Vector3 pos) {
     GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
     sphere.transform.localScale = new Vector3(1, 1, 1);
@@ -62,6 +72,9 @@ public class Unit : MonoBehaviour {
     connectors.Add(sphere);
   }
 
+  /// <summary>
+  /// Bereinigt die Connector wenn sie nicht mehr benötigt werden
+  /// </summary>
   private void ClearConnectors() {
     for(int i = 0; i < connectors.Count; i++) {
 		if(connectors[i] != null || !ReferenceEquals(connectors[i], null)) {
@@ -72,6 +85,11 @@ public class Unit : MonoBehaviour {
     }
   }
 
+  /// <summary>
+  /// Löst Coroutine zum Bewegen der Unit zum Ziel und Zeichnen des Pfades aus sobald er gefunden wurde
+  /// </summary>
+  /// <param name="newPath"></param>
+  /// <param name="pathSuccessful"></param>
   public void OnPathFound(Vector3[] newPath, bool pathSuccessful){
 		if(pathSuccessful){
 			path = newPath;
@@ -81,7 +99,10 @@ public class Unit : MonoBehaviour {
 		}
 	}
 
-	
+	/// <summary>
+  /// Löst das Bewegen der Unit zum Ziel aus
+  /// </summary>
+  /// <returns></returns>
 	IEnumerator FollowPath(){
 		   if(winnerText.text == "Verloren" || winnerText.text == "Gewonnen"){
 			   // do nothing or add a restart game button

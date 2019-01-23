@@ -2,26 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Die Node Klasse.
+/// Sie repräsentiert einen Node auf dem Spielfeld.
+/// </summary>
+
 public class Node :IHeapItem<Node>{
-    public bool walkable;
-    public Vector3 worldPosition;
-	public Node parent;
-	public int gridX;
-	public int gridY;
-	public int gCost;
-	public int hCost;
-	private int heapIndex;
+    public bool walkable; // Gibt an ob der Node begehbar ist oder nicht
+    public Vector3 worldPosition; // Position im Raum von Unity
+	  public Node parent; // Eine Referenz auf den Parent Node
+	  public int gridX; // Koordinate x im Grid
+	  public int gridY; // Koordinate y im Grid
+	  public int gCost; // Distanz zum StartNode
+	  public int hCost; // Distanz zum EndNode
+	  private int heapIndex; // Position im Heap
 	
 
     public Node(bool _walkable, Vector3 _worldPosition, int _gridX, int _gridY)
     {
         walkable = _walkable;
         worldPosition = _worldPosition;
-		gridX = _gridX;
-		gridY = _gridY;
+		    gridX = _gridX;
+		    gridY = _gridY;
     }
-	
-	public int fCost{
+  /// <summary>
+  /// Gesamtkosten des Nodes (gCost + hCost)
+  /// </summary>
+  public int fCost{
 		get{
 			return gCost + hCost;
 		}
@@ -35,8 +42,10 @@ public class Node :IHeapItem<Node>{
 			heapIndex = value;
 		}
 	}
-	
-	public int CompareTo(Node nodeToCompare){
+  /// <summary>
+  /// Methode um zwei Nodes zu vergleichen
+  /// </summary>
+  public int CompareTo(Node nodeToCompare){
 		int compare = fCost.CompareTo(nodeToCompare.fCost);
 		if(compare==0){
 			compare = hCost.CompareTo(nodeToCompare.hCost);
