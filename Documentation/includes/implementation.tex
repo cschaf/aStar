@@ -2,12 +2,27 @@
 \label{sec:Umsetzung}
 \todo{Jannis}
 \section{Implementierung des A* Algorithmus}
+\label{sec:implementAStar}
 \todo{Christian}
 \section{ImageTargets}
-\todo{Jannis}
 Design der Images und Erkennung der Images
 \section{Erkennung von Objekten}
-\todo{Jannis + Vural}
+Wie in Kapitel \ref{sec:vufObjRec} beschrieben müssen die eingescannten Objekte in eine Vuforia Datenbank importiert werden (siehe Abb. \ref{fig:vuforiaObjectDatabase}). Diese Datenbank wird im Vuforia Developer Portal zur Verfügung gestellt und ist mit wenigen Klicks eingerichtet. Diese Datenbank lässt sich für unterschiedliche Entwicklungsplattformen herunterladen. Unter anderem auch für die Unity IDE als package. Um die Objekte nun in der Unity Scene verwenden zu können, muss das Package per Import Package Funktion in Unity geladen werden.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{assets/vuforiaDataBase.jpeg}
+    \caption{Vuforia Datenbank}\label{fig:vuforiaObjectDatabase}
+\end{figure}\\
+Vuforia bietet die Möglichkeit in Unity 3d Scan Objekte als Gameobjekt anzulegen. Bei dem angelegten Objekt kann nun die importierte Datenbank und das wiederzuerkennende Objekt ausgewählt werden. \\
+In der Szene erscheint nun eine Bounding Box. Laut der Vuforia Dokumentation\cite{VufObjRec}  sollte die Bounding Box den Maßen des eingescannten Objektes entsprechen. Dies ist bei der Durchführung jedoch nicht der Fall gewesen. Die Objekte haben einen Nullpunkt. (siehe Abb. \ref{fig:matches}) Der Nullpunkt wird von der Schablone welche zum Einscannen genutzt wird, übernommen. Die Bounding Box bietet sich gut an, um Objekte auf dem eingescannten Objekt zu platzieren. Jedoch ist die Länge vom Nullpunkt bis zum Ende des Objektes nicht bekannt. Auch rechteckige Objekte werden durch eine quadratische Bounding Box dargestellt. Durch diesen Umstand kann keine präzise Bounding Box generiert werden, die das reale Objekt in der Scene widerspiegelt.\\
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{assets/matches.png}
+    \caption{Eingescanntes Objekt mit Nullpunkt}\label{fig:matches}
+\end{figure}\\
+Dem in der Scene befindlichen 3d Scan Game Object kann nun der \textit{unwalkable Layer} zugewiesen werden siehe \ref{sec:implementAStar} \nameref{sec:implementAStar}. Im Test reagierte der A* Algorithmus nicht auf die realen Objekte, da diese sich nicht auf der selben Ebene befinden wie das Spielfeld. Durch diesen Umstand haben wir den \textit{DefaultTrackableEventHandler} von Vuforia erweitert. Hierfür wurde ein eigenes Script implementiert, welches die eingescannten Objecte bei jedem Update auf die Position 0 der y-Achse transformiert. So wird sichergestellt, dass sich das reale Objekt und das Spielfeld auf der selben Ebene befinden. Das reale Objekt wurde daraufhin von den Nodes des A* Grids als unwalkable erkannt. \\
+Um die Objekte in die Scene des Spielers zu integrieren muss sich die Kamera exakt über dem Spielfeld befinden. Eine Third Person Ansicht ist nicht möglich, da die erkannten Objekte von der Position der Kamera ausgehen. Steht die Kamera Beispielsweise auf xyz(0,-20, -20), erhält das gescannte Objekt ebenfalls diese Koordinaten. Wird das Objekt in der realen Welt bewegt, verändern sich die Koordinaten, allerdings ausgehend von der Kamera Position. Durch diesen Umstand muss die Kamera exakt in der Mitte des Spielfelds befinden, damit die realen Objekte ausgehend von diesem Punkt platziert werden können.
+
 \section{UI}
 \todo{Jannis}
 

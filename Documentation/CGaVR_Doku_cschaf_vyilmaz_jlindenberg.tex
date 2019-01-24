@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \usepackage{todonotes}
 \usepackage{tabularx}
+\usepackage{nameref}
 \usepackage{ltablex}
 % Hyperref (sollte unbedingt vor geometry-Paket geladen werden)
 % für Anzeige in Acrobat (pdfstartview)
@@ -21,7 +22,8 @@
 \usepackage{inconsolata}
 \usepackage{xcolor}
 \usepackage{titling}
-\usepackage{parskip} 
+\usepackage{parskip}
+\usepackage{cite}  
 \usepackage{fancyhdr}
 \usepackage{wrapfig}
 \usepackage{pifont}
@@ -172,4 +174,6 @@
     \include{includes/implementation}
     \include{includes/conclusion}
     \include{includes/appendix}
+    \bibliographystyle{IEEEtran}
+	\bibliography{library}
 \end{document}
