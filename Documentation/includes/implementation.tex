@@ -24,5 +24,21 @@ Dem in der Scene befindlichen 3d Scan Game Object kann nun der \textit{unwalkabl
 Um die Objekte in die Scene des Spielers zu integrieren muss sich die Kamera exakt über dem Spielfeld befinden. Eine Third Person Ansicht ist nicht möglich, da die erkannten Objekte von der Position der Kamera ausgehen. Steht die Kamera Beispielsweise auf xyz(0,-20, -20), erhält das gescannte Objekt ebenfalls diese Koordinaten. Wird das Objekt in der realen Welt bewegt, verändern sich die Koordinaten, allerdings ausgehend von der Kamera Position. Durch diesen Umstand muss die Kamera exakt in der Mitte des Spielfelds befinden, damit die realen Objekte ausgehend von diesem Punkt platziert werden können.
 
 \section{UI}
-\todo{Jannis}
+Wie in Abbildung \ref{fig:uiElements} zu sehen ist, besteht das User Interface für die RunnAR Anwendung aus zwei unterschiedlichen Ansichten. Zum Einen ist in Abbildung \ref{fig:uiMenu}) das Startmenü zu sehen. Hierbei hat der Nutzer die Möglichkeit die Anwendung zu verlassen indem der Exit Button geklickt wird, oder das Spiel kann durch den Start Button gestartet werden. Zum Anderen besteht die Anwendung aus der Spielansicht (siehe Abbildung \ref{fig:uiGame}). Die Spielansicht beinhaltet einen Replay Button, einen Timer sowie den Spieler und alle Interaktionselemente für den Spieler. Durch den Replay Button lässt sich der derzeitige Spielstand zurücksetzen und von Neuem beginnen. Der Timer läuft von 90 Sekunden bis 0. Ist die Zeit abgelaufen ist die Spielrunde beendet. Das UI der Anwendung befindet sich in einem prototypischen Zustand, der eine einfache Bedienung ermöglicht.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{assets/uiMenu}
+        \caption{UI Menüansicht}
+        \label{fig:uiMenu}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{assets/uiGame}
+        \caption{UI Spielansicht}
+        \label{fig:uiGame}
+    \end{subfigure}
+    \caption{User Interface Elemente}\label{fig:uiElements}
+\end{figure}
 
