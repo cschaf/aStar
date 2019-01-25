@@ -3,7 +3,49 @@
 \todo{Jannis}
 \section{Implementierung des A* Algorithmus}
 \label{sec:implementAStar}
-\todo{Christian}
+\subsection*{Allgemein}
+\begin{wrapfigure}{r}{7.5cm}
+    \includegraphics[width=7.5cm]{assets/aStarUnityImplementation.png}
+    \caption{A* Implementation in Unity}
+    \label{fig:aStarImplementationUnity}
+\end{wrapfigure}
+Die Implementierung des A* Algorithmus erfolgt in einem separaten Projekt, um mögliche Abhängigkeiten zu minimieren. Dieses Projekt ist in Abbildung \ref{fig:aStarImplementationUnity} zu sehen.
+\begin{wrapfigure}{l}{4cm}
+    \includegraphics[width=4cm]{assets/aStarGridSettings}
+    \caption{StarGrid Settings}
+    \label{fig:aStarGridSettings}
+\end{wrapfigure}
+In der Grafik ist das Spielfeld, also das Grid mit seinen Nodes zu sehen, dort als graue oder rote Kacheln unter den Objekten dargestellt. Ein Node ist dementsprechend entweder als Pfad (grau) oder ein Hindernis (rot) gekennzeichnet.
+
+Für das Bestimmen der Hindernisse auf dem Spielfeld wird die Funktionalität der Layers von Unity verwendet. Mit ihr lassen sich Spielobjekte logisch voneinander treffen. So sind die roten Quader auf dem selbst definierten Layer \textit{unwalkable}.
+
+Wird das Spielfeld durch die \textit{StarGrid} Klasse generiert, kann gezielt nach den Hindernissen mit diesem Layer gesucht werden. Dann bekommen die Nodes, die entsprechende Eigenschaft ob sie begehbar oder nicht begehbar sind.
+
+Damit dieses Skript im Kontext von Unity eingebunden werden kann, wird ein leeres \textit{GameObject} erstellt, was alle zum Algorithmus gehörenden Skripte zugewiesen bekommt. Dort lassen sich dann zum Beispiel Parameter wie die Größe des Grids, den Radius einen einzelnen Nodes oder ein Wert für einen Puffer setzen (siehe Abbildung \ref{fig:aStarGridSettings}). Der Puffer ist dann auf die Größe der Hindernisse drauf gerechnet, damit die Spielfigur einen größeren Abstand bei Verbeilaufen hat.
+
+Sobald der A* den kürzesten Pfad berechnet hat bekommt er eine Liste mit Node-Position, welche dann verwendet werden, um die Spielfigur von Node zu Node laufen zu lassen aber auch den Pfad zu visualisieren. 
+
+\subsection*{Binary-Min-Heap}
+\begin{wrapfigure}[11]{R}{2in - .75\columnsep}
+    \vspace{-\intextsep}
+    \hspace*{-.75\columnsep}
+    \includegraphics[width=4cm]{assets/heap_example.png}
+    \caption{Binary-Min-Heap Beispiel}
+    \label{fig:aStarHeap}
+\end{wrapfigure}
+Im Grundlagenkapitel \nameref{sec:fundamentalsA*} (\ref{sec:fundamentalsA*}) wird erläutert, das der A* Algorithmus eine \textit{Open List} verwendet, die benötigt wird, um alle Nodes zu speichern, die als möglicher Wegpunkt in Frage kommen. Da dessen Nodes häufig sortiert und aktualisiert werden muss, wird dafür ein Binary-Min-Heap als Priority Queue verwendet. Diese Datenstruktur kann effizient mit einem linearem Zeitaufwand von $O(n)$ erzeugt werden. Das Hinzufügen oder Entfernen von Elementen hat im schlimmsten Fall eine Laufzeit von $O(\log{n})$. Der Vorteil bei dieser Datenstruktur gegenüber einem herkömmlichen Arrays ist das \textit{in-place} Sortieren und wenn intern mit einem Array gearbeitet wird, ist der Speicherverbrauch gering und die Zugriffe sind schnell. Die Gesamtkomplexität für das Sortieren wäre im \textit{Worst-Case} $O(n*\log{n})$.
+
+\subsection*{PathRequestManager}
+Der \textit{PathRequestManger} ist eine Klasse, die implementiert wurde, um mehrere Wegberechnung nacheinander asynchronen abarbeiten zu lassen. Dabei verwaltet er alle Pfadanfragen und lässt alle nacheinander berechnen. Das sorgt dafür, dass der Spielfluss nicht durch das Blockieren des Hauptthreads unterbrochen wird.
+\subsection*{Turret}
+\begin{wrapfigure}[7]{L}{2in - .75\columnsep}
+    \vspace{-\intextsep}
+    \hspace*{-.75\columnsep}
+    \includegraphics[width=4cm]{assets/aStarTurretSettings}
+    \caption{PathRequestManager Settings}
+    \label{fig:aStarTurretSettings}
+\end{wrapfigure}
+Für das im Kapitel \nameref{conclusion} (\ref{conclusion}) erwähnte Feature einer schießenden Einheit ist das \textit{Turret} Skript geschrieben worden. Dieses Skript wird einem \textit{GameObject} zugewiesen, welches dann auch im Spiel Projektile verschie\ss en soll. Als Projektil kann ein belibiges \textit{GameObject} verwendet werde. Sollte keines ausgewählt sein, wird ein Standard Projektil aus den Prefabs geladen. Wie in Abbildung \ref{fig:aStarTurretSettings} zu sehen, gibt es vier Parameter, welche angepasst werden können. Zum Einen sind das die Schussgeschwindigkeit, der Austrittsbereich, aus dem das Projektil geschossen wird und das eigentliche Projektil. Zum Anderen ist dort das Feld \textit{Seeker}, welche eine Referenz zur Spielfigur ist, also das Objekt auf das geschossen werden soll. Diese Komponente hat es noch nicht in das aktuelle Spiel geschafft, was aber mit dieser Klasse einfach nachzuholen ist.
 \section{ImageTargets}
 Design der Images und Erkennung der Images
 \section{Erkennung von Objekten}
