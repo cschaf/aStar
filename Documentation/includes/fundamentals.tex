@@ -9,12 +9,9 @@ Der A*-Algorithmus ist ein Wegfindungs-Algorithmus, der von Peter Hart, Nils Nil
     \caption{Beispiel Node}
     \label{fig:aStarNode}
 \end{wrapfigure}
-Der Ausgangspunkt bildet ein zwei-dimensionales Array in dem es Felder gibt, die entweder Pfad und Hindernis darstellen. Es wird ein Start- sowie Zielfeld festgelegt. Beide sind dem Algorithmus während der Ausführung bekannt.Sobald das Spielfeld erstellt sowie ein Start- und Zielfeld gewählt wurde, sind die Mindestvoraussetzungen erfüllt. Ein Feld wird auch als Node bezeichnet und hat drei wichtige Attribute (siehe Abbildung \ref{fig:aStarNode}). Eines der Attribute sind die G-Kosten, welche die Distanz zum Start-Node darstellen bzw. die Kosten für das Beschreiten des bisherigen Wegs. Weiterhin gibt es die \textit{H-Kosten}, welche die Distanz zum Ziel darstellen. Das dritte Attribut sind die \textit{F-Kosten}. Diese werden berechnet indem man die \textit{H-Kosten} mit den \textit{H-Kosten} addiert (siehe Formel \ref{fcost}) (vgl. \cite{astar_comparison}).
-\begin{equation}
-F_{cost} = G_{cost} + H_{cost}
-\label{fcost}
-\end{equation}
-Für die \textit{H-Kosten} wird eine Heuristik verwendet. Hierbei wurde sich aus Simplizität für die \textit{Manhatten-Methode} entschieden. Bei dieser Methode ignoriert man den Node-Typ (Pfad oder Hindernis) und berechnet einfach die Kosten als würde man direkt, ohne Diagonalen, zum Ziel gehen. Für die Kostenberechnung allgemein musst man sich auf einen numerischen Wert für das horizontale bzw. vertikale und diagonale Bewegung zum nächsten Node festlegen. Als Wert für die horizontale bzw. vertikale Bewegung wird 10 ($1*10$) festgelegt. Für die diagonale Bewegung wird 14 ($\sqrt{2}*10$) verwendet. Mit diesen Werten lassen sich nun die Gesamtkosten eines Nodes berechnen.
+Der Ausgangspunkt bildet ein zwei-dimensionales Array in dem es Felder gibt, die entweder Pfad und Hindernis darstellen. Es wird ein Start- sowie Zielfeld festgelegt. Beide sind dem Algorithmus während der Ausführung bekannt.Sobald das Spielfeld erstellt sowie ein Start- und Zielfeld gewählt wurde, sind die Mindestvoraussetzungen erfüllt. Ein Feld wird auch als Node bezeichnet und hat drei wichtige Attribute (siehe Abbildung \ref{fig:aStarNode}). Eines der Attribute sind die G-Kosten, welche die Distanz zum Start-Node darstellen bzw. die Kosten für das Beschreiten des bisherigen Wegs. Weiterhin gibt es die \textit{H-Kosten}, welche die Distanz zum Ziel darstellen. Das dritte Attribut sind die \textit{F-Kosten}. Diese werden berechnet indem man die \textit{G-Kosten} mit den \textit{H-Kosten} addiert: $F_{cost} = G_{cost} + H_{cost}$ (vgl. \cite{astar_comparison}).
+
+Für die \textit{H-Kosten} wird eine Heuristik verwendet. Hierbei wurde sich aus Simplizität für die \textit{Manhatten-Methode} entschieden. Bei dieser Methode ignoriert man den Node-Typ (Pfad oder Hindernis) und berechnet einfach die Kosten als würde man direkt, ohne Diagonalen, zum Ziel gehen. Für die Kostenberechnung allgemein muss man sich auf einen numerischen Wert für das horizontale bzw. vertikale und diagonale Bewegung zum nächsten Node festlegen. Als Wert für die horizontale bzw. vertikale Bewegung wird 10 ($1*10$) festgelegt. Für die diagonale Bewegung wird 14 ($\sqrt{2}*10$) verwendet. Mit diesen Werten lassen sich nun die Gesamtkosten eines Nodes berechnen.
 
 Der Algorithmus arbeitet mit zwei Listen, der \textit{Open List} und der \textit{Closed List} also die offene und geschlossene Liste. In der \textit{Open List} befinden sind die Felder, die für einen möglichen Pfad in Frage kommen. In der \textit{Closed List} sind die Nodes, welche schon beschritten wurden (\cite{astar_intro}).
 
@@ -43,7 +40,7 @@ In Schritt 1 von Abbildung \ref{fig:aStarStep1_3} sind die hellblauen Felder als
     \caption{A* Ausführungsschritte 1-3}\label{fig:aStarStep1_3}
 \end{figure}
 
-Nun wird wieder der Node mit den geringsten Kosten gewählt. Er wird in die geschlossene Liste aufgenommen und seine Nachbar werden zur offenen Liste hinzugefügt Schritt 1 von Abbildung \ref{fig:aStarStep4_6}. Dieser Vorgang wiederholt sich nun neun weitere Male ( siehe Abbildung \ref{fig:aStarStep7_9}, \ref{fig:aStarStep10_12} und \ref{fig:aStarStep13}). 
+Nun wird wieder der Node mit den geringsten Kosten gewählt. Er wird in die geschlossene Liste aufgenommen und seine Nachbar werden zur offenen Liste hinzugefügt Schritt 1 von Abbildung \ref{fig:aStarStep4_6}. Dieser Vorgang wiederholt sich nun neun Mal ( siehe Abbildung \ref{fig:aStarStep7_9}, \ref{fig:aStarStep10_12} und \ref{fig:aStarStep13}). 
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.3\textwidth}
@@ -110,8 +107,8 @@ Nun wird wieder der Node mit den geringsten Kosten gewählt. Er wird in die gesc
     \caption{A* Ausführungsschritte 10-12}\label{fig:aStarStep10_12}
 \end{figure}
 
-Befindet sich das Ziel in der offenen Liste so ist das Ziel gefunden bzw. erreicht worden. Sollte sich kein Node mehr in der \textit{Open List} befinden gibt es keinen Pfad vom Start bis zum Ziel. Hierbei handelt es sich auch zugleich um den \textit{Worst Case}, bei dem alle Nodes besucht wurden.
-Der kürzeste Pfad aus den beschrittenen Nodes kann nun mit der Zurückverfolgung anhand der Parents herausgefunden werden. Im Detail hei\ss t das, das man vom Ziel zu dessen Parent dann zum nächsten Parent usw. geht, bis man wieder auf das Startfeld trifft. Damit hat man den kürzesten Weg vom Start bis zum Ziel bestimmt. (Im \nameref{sec:anhang} ist eine Animation eingebettet, welche mit dem Adobe Reader abgespielt werden kann.)  
+Befindet sich das Ziel in der offenen Liste so ist das Ziel gefunden bzw. erreicht worden. Sollte sich kein Node mehr in der \textit{Open List} befinden, gibt es keinen Pfad vom Start bis zum Ziel. Hierbei handelt es sich auch zugleich um den \textit{Worst Case}, bei dem alle Nodes besucht wurden.
+Der kürzeste Pfad aus den beschrittenen Nodes kann nun mit der Zurückverfolgung anhand der Parents herausgefunden werden. Im Detail hei\ss t das, dass man vom Ziel zu dessen Parent dann zum nächsten Parent usw. geht, bis man wieder auf das Startfeld trifft. Damit hat man den kürzesten Weg vom Start bis zum Ziel bestimmt. (Im \nameref{sec:anhang} ist eine Animation eingebettet, welche mit dem Adobe Reader abgespielt werden kann.)  
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{assets/aStarStep13.png}
