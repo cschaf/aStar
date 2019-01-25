@@ -1,11 +1,47 @@
 \chapter{Umsetzung}
 \label{sec:Umsetzung}
-\todo{Jannis}
+Im Kapitel \nameref{sec:Umsetzung} werden die einzelnen Schritte der Implementierung des Spielkonzepts beschrieben. Hierbei wird auf die unterschiedlichen Komponenten des Spiels eingegangen sowie auf die Schwierigkeiten, die bei der Implementierung aufgetreten sind.
+
 \section{Implementierung des A* Algorithmus}
 \label{sec:implementAStar}
 \todo{Christian}
 \section{ImageTargets}
-Design der Images und Erkennung der Images
+Wie im Kapitel \nameref{sec:rec_imageTargets} \ref{sec:rec_imageTargets} beschrieben, wurden vier unterschiedliche ImageTargets entworfen und in die Vuforia Datenbank geladen. Hierbei handelt es sich um Bilder von Gegenständen, die einem Studenten den Uni Alltag immer wieder erschweren. Bei den Gegenständen handelt es sich um die Mensa, Pizza, Bier und die Straßenbahn. Die Mensa steht für die komplizierte Platzsuche in einer überfüllten Mensa. Die Pizza repräsentiert das Ausweichessen, was es jeden Tag zu Hause gibt, wenn der Kühlschrank mal wieder leer ist. Das Bier steht für die Verlockung an einem sonnigen Abend den Stift fallen zu lassen und Bier zu trinken. Die Straßenbahn steht stellvertretend für die langen Anfahrtswege zur Uni.\\
+Die ImageTargets haben sich im Laufe des Projekts den Anforderungen entsprechend verändert. Durch das Ranking in der Vuforia Datenbank stellte sich heraus, dass die ersten Entwürfe (siehe Abbildung \ref{fig:impl_imageTargets}) der ImageTargets einen schlechten Wiedererkennungswert aufwiesen. Aus diesem Grund mussten die Referenzbilder für die ImageTarget Detection überarbeitet werden. Durch die Anpassung der Bilder hat sich das Ranking durch die Vuforia Datenbank deutlich verbessert (siehe Abbildung \ref{fig:impl_vuforiaRanking}). Diese Verbesserung hat dazu beigetragen, dass die Bilder in der Anwendung auf auf größere Entfernungen besser erkannt und verfolgt werden konnten.
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.2\textwidth}
+        \includegraphics[width=\textwidth]{assets/mensa.jpg}
+        \caption{Mensa Erstentwurf}
+        \label{fig:oldMensa}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.2\textwidth}
+        \includegraphics[width=\textwidth]{assets/mensa_new.jpg}
+        \caption{Überarbeitete Mensa}
+        \label{fig:newMensa}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.2\textwidth}
+        \includegraphics[width=\textwidth]{assets/tram.png}
+        \caption{Tram Erstentwurf}
+        \label{fig:oldTram}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.2\textwidth}
+        \includegraphics[width=\textwidth]{assets/tram_new.jpg}
+        \caption{Überarbeitete Straßenbahn}
+        \label{fig:newTram}
+    \end{subfigure}
+    \caption{Entwicklung der ImageTargets}\label{fig:impl_imageTargets}
+\end{figure}
+
+\begin{figure}[h]
+        \includegraphics[width=\textwidth]{assets/vuforiaImageRanking}
+        \caption{Vuforia Ranking}
+        \label{fig:impl_vuforiaRanking}
+\end{figure}
+
 \section{Erkennung von Objekten}
 Wie in Kapitel \ref{sec:vufObjRec} beschrieben müssen die eingescannten Objekte in eine Vuforia Datenbank importiert werden (siehe Abb. \ref{fig:vuforiaObjectDatabase}). Diese Datenbank wird im Vuforia Developer Portal zur Verfügung gestellt und ist mit wenigen Klicks eingerichtet. Diese Datenbank lässt sich für unterschiedliche Entwicklungsplattformen herunterladen. Unter anderem auch für die Unity IDE als package. Um die Objekte nun in der Unity Scene verwenden zu können, muss das Package per Import Package Funktion in Unity geladen werden.
 \begin{figure}[h]
