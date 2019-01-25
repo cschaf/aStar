@@ -7,10 +7,17 @@ Als Bibliothek wurde sich fuer OpenCV entschieden, welche mit der Spra- che C++ 
 
 
 \section{Definition von Funktionsanforderungen}
-\todo{Christian - evtl als Tabelle}
-Bei der Abgabe des Projektes sollen folgende Anforderungen Teil des Funktionsumfang sein.
+Bei der Abgabe des Projektes sollen folgende Anforderungen Teil des Funktionsumfang sein:
+\begin{itemize}
+\item Es soll ein festes Start und Ziel für die Berechnung des kürzesten Wegs vorhanden sein.
+\item Eine algorithmus-gesteuerte Spielfigur soll den kürzesten Weg vom Start zum Ziel berechnen und ablaufen.
+\item Es sollen auf dem Spielfeld platzierte Objekte als Hindernis anerkannt werden.
+\item Die platzierten Hindernisse sollen von der Spielfigur umgangen werden und der kürzeste Weg soll neu berechnet werden.
+\item Die Anwendung soll auf iOS und Android Geräten laufen.
+\item Ein Timer soll die Zeit anzeigen, die der algorithmus-gesteuerte Spiel hat um zum Ziel  zu gelangen.
+\item Der Spieler soll ein visuelles Feedback erhalten ob er gewonnen oder verloren hat.
+\end{itemize}
 
-Donnerstag zusammenmachen
 \section{Spielkonzept}
 \todo{Jannis}
 Auf der Skizze aus Abbildung 1 ist ein Musterspielfeld abgebildet. Die Spielfigur (gruener Pullover), welche sich zu Beginn des Spiels am unteren Rand des Spielfelds befindet, muss den Hindernissen ausweichen. Hindernisse koennen zum Einen aus Image Targets bestehen, auf die in der Spielumgebung 3D Objekte gemappt werden, oder zum Anderen aus realen Objekten, die Im Spielfluss erkannt werden und so ebenfalls ein 3-dimensionales Hindernis fuer den Spieler darstellen. Der Start und das Ziel sind ebenfalls durch Muster gekennzeichnet.
