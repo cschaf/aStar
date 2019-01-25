@@ -55,8 +55,16 @@ Zu den bekanntesten Algorithmen der Wegfindung gehören Dijkstra und A*. In Tabe
     \label{tbl:comparisonA*Dijkstra}
 \end{table}
 
-\section{Imagetargets}
-\todo{Jannis}
+\section{ImageTargets}
+\begin{wrapfigure}{r}{0.2\textwidth}
+	\includegraphics[width=3cm]{assets/exampleImageTarget.jpg}
+	\caption{Beispiel ImageTarget}
+	\label{fig:exampleImageTarget}
+\end{wrapfigure}
+ImageTargets soll im Projekt RunnAR als Hindernisse wie auch als mögliches dynamisches Ziel für den Spieler dienen. Aus diesem Grund wurden sechs unterschiedliche ImageTargets in die Vuforia Datenbank eingefügt, die dem Spieler als Hindernis dienen sollen. Wie im Kapitel \ref{sec:fund_imagetargets} \nameref{sec:fund_imagetargets} müssen die ImageTargets über möglichst viele eindeutige Merkmale verfügen. Die Vuforia Datenbank verfügt über eine Funktion zur Berechnung eines Rankings, anhand derer sich die ImageTarget Erkennungsqualität ablesen lässt. Nach erfolgreicher Recherche stellt sich heraus, dass Bilder mit einem weißen Hintergrund und einem eindeutigen Bild mit unterschiedlichen Merkmalen das höchstmögliche Maß an Wiedererkennungswert besitzt (siehe Abbildung: \ref{fig:exampleImageTarget}).
+
+\todo{finde den Absatz scheiße. Weiß aber auch nicht was ich sonst dazu schreiben soll.}
+
 \section{Objekterkennung}
 Da die Objekterkennung einen großen Anteil des RunnAr Projekts ausmacht, wurde hierzu viel Recherche betrieben. Da die Objekte vom Benutzer in Echtzeit platziert und manipuliert werden können, wurde besonderes Augenmerk auf die Performanz der Implementierungsmöglichkeiten gerichtet.
 \subsection{Tensorflow}
