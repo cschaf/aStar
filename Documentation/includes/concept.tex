@@ -1,10 +1,6 @@
 \chapter{Konzept}
 \label{sec:conzept}
-\todo{Jannis überarbeiten}
-Nachdem sich die Idee des Projektes verfestigt hat, muss genau ausdefiniert werden, welche Funktionen die Anwendung am Tag der Abgabe erfuellen soll. Nicht alle Visionen lassen sich in dem vorgegebenen Zeitraum umsetzten, sodass eine Liste aus Funktionsanforderungen gefertigt wird.
-Unumgaenglich war jedoch die Wahl fuer einen Algorithmus zur Merkmalser- kennung, der das Herz der Anwendung darstellt. Somit ist bei dessen Wahl besondere Vorsicht geboten, weswegen hierfuer eine Gegenueberstellung von moeglichen Algorithmen ausgearbeitet wurde.
-Als Bibliothek wurde sich fuer OpenCV entschieden, welche mit der Spra- che C++ genutzt wird. Der Grund fuer diese Wahl sind die deutlich weitrei- chenderen Funde bei Recherchen, sie uebersteigen die von Java oder Python deutlich.
-
+In diesem Kapitel werden zum Einen die Funktionsanforderungen, die das Projekt am Tag der Abgabe erfüllen soll, aufgeführt. Nicht alle Visionen lassen sich in dem vorgegebenen Zeitraum umsetzten, sodass eine Liste aus Funktionsanforderungen gefertigt wird. Zum Anderen wird das Konzept für das Spiel RunnAR im Detail beschrieben.
 
 \section{Definition von Funktionsanforderungen}
 Bei der Abgabe des Projektes sollen folgende Anforderungen Teil des Funktionsumfang sein:
@@ -19,8 +15,27 @@ Bei der Abgabe des Projektes sollen folgende Anforderungen Teil des Funktionsumf
 \end{itemize}
 
 \section{Spielkonzept}
-\todo{Jannis}
-Auf der Skizze aus Abbildung 1 ist ein Musterspielfeld abgebildet. Die Spielfigur (gruener Pullover), welche sich zu Beginn des Spiels am unteren Rand des Spielfelds befindet, muss den Hindernissen ausweichen. Hindernisse koennen zum Einen aus Image Targets bestehen, auf die in der Spielumgebung 3D Objekte gemappt werden, oder zum Anderen aus realen Objekten, die Im Spielfluss erkannt werden und so ebenfalls ein 3-dimensionales Hindernis fuer den Spieler darstellen. Der Start und das Ziel sind ebenfalls durch Muster gekennzeichnet.
+Im Projekt RunnAR soll eine Spielfigur ein Hindernisfeld in einer vorgegebenen Zeit überwinden. Das Spielfeld befindet sich auf einer flachen Ebene und wird per Augmented Reality in die reale Welt projiziert. Die Hindernisse auf dem Spielfeld sind variabel und auch zur Spielzeit veränderbar. Der Spieler wird von einem Algorithmus gesteuert. Der Algorithmus steuert die Spielfigur in Richtung Ziel. Der Mensch als Gegenspieler versucht die Spielfigur, durch das Setzen von Hindernissen auf dem Spielfeld, daran zu hindern, das Ziel zu erreichen.\\
+In Abbildung \ref{fig:concept_skizze} sind drei Beispielschritte eines Musterspielfelds abgebildet. Die Spielfigur (grüner Pullover), welche sich zu Beginn des Spiels am unteren Rand des Spielfelds befindet, muss den Hindernissen ausweichen. Hindernisse sind reale Objekte, die Im Spielfluss erkannt werden und so ein 3-dimensionales Hindernis für den Spieler darstellen. Der Start und das Ziel sind ebenfalls durch Muster gekennzeichnet. 
 
-\subsection{Entwicklung des Spielkonzepts}
-\subsection{Finales Spielkonzept}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{assets/skizze1.png}
+        \caption{Projektskizze Teil 1}
+        \label{fig:skizze1}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{assets/skizze2.png}
+        \caption{Projektskizze Teil 2}
+        \label{fig:skizze2}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{assets/skizze3.png}
+        \caption{Projektskizze Teil 3}
+        \label{fig:skizze3}
+    \end{subfigure}
+    \caption{Projektskizze}\label{fig:conc_skizze}
+\end{figure}
